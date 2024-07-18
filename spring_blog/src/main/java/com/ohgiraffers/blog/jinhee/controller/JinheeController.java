@@ -1,7 +1,6 @@
 package com.ohgiraffers.blog.jinhee.controller;
 
 import com.ohgiraffers.blog.jinhee.model.dto.BlogDTO;
-import com.ohgiraffers.blog.jinhee.model.dto.FileDTO;
 import com.ohgiraffers.blog.jinhee.service.JinheeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,10 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -38,27 +35,20 @@ public class JinheeController {
     }
 
     @PostMapping("/post")
-    public String postBlog(@ModelAttribute("blogDTO") BlogDTO blogDTO,
-                           @RequestParam("files") List<MultipartFile> files,
-                           RedirectAttributes redirectAttributes) throws IOException {
-        int result = jinheeService.post(blogDTO, files);
+    public String postBlog(@ModelAttribute("blogDTO") BlogDTO blogDTO, RedirectAttributes redirectAttributes) {
+        if (blogDTO.getBlogTitle() == null || blogDTO.getBlogTitle().isEmpty() ||
+                blogDTO.getBlogContent() == null || blogDTO.getBlogContent().isEmpty()) {
+            return "redirect:/jinhee/post";
+        }
+
+        int result = jinheeService.post(blogDTO);
+
         if (result <= 0) {
             return "redirect:/jinhee/error/page";
         } else {
             redirectAttributes.addFlashAttribute("confirm", true);
-            return "redirect:/jinhee/journey";
+            return "redirect:/jinhee/post";
         }
-    }
-
-
-    @GetMapping("/post/{id}")
-    public String getPostPageById(@PathVariable Long id, Model model) {
-        BlogDTO blogDTO = jinheeService.getBlogById(id); // Assuming you have this method in JinheeService
-        if (blogDTO == null) {
-            return "redirect:/jinhee/error/page"; // or handle accordingly
-        }
-        model.addAttribute("blogDTO", blogDTO);
-        return "jinhee/postpage";
     }
 
     @GetMapping("/journey")
@@ -77,16 +67,15 @@ public class JinheeController {
     @GetMapping("/postpage/{id}")
     public String postPage(@PathVariable Long id, Model model) {
         BlogDTO blogDTO = jinheeService.getBlogById(id);
-        model.addAttribute("blogTitle", blogDTO.getBlogTitle());
-        model.addAttribute("blogContent", blogDTO.getBlogContent());
-        model.addAttribute("blogDTO", blogDTO);
-        model.addAttribute("blogId", blogDTO.getId());
-        model.addAttribute("likeCount", jinheeService.getLikes(id));
-        model.addAttribute("imageFiles", blogDTO.getImageFiles());
-
+        if (blogDTO != null) {
+            model.addAttribute("blogTitle", blogDTO.getBlogTitle());
+            model.addAttribute("blogContent", blogDTO.getBlogContent());
+            model.addAttribute("blogDTO", blogDTO);
+            model.addAttribute("blogId", blogDTO.getId());
+            model.addAttribute("likeCount", jinheeService.getLikes(id));
+        }
         return "jinhee/postpage";
     }
-
 
     @PostMapping("/postpage/{id}/like")
     @ResponseBody

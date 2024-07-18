@@ -45,19 +45,6 @@ public class CommentService {
     }
 
     @Transactional
-    public CommentDTO createReply(Long parentCommentId, CommentDTO replyDTO) {
-        Comment parentComment = commentRepository.findById(parentCommentId)
-                .orElseThrow(() -> new IllegalArgumentException("Parent comment not found with id: " + parentCommentId));
-
-        Comment reply = new Comment();
-        reply.setContent(replyDTO.getContent());
-        reply.setParentComment(parentComment);
-
-        Comment savedReply = commentRepository.save(reply);
-        return convertToDTO(savedReply);
-    }
-
-    @Transactional
     public CommentDTO updateComment(Long commentId, CommentDTO commentDTO) {
         Comment comment = commentRepository.findById(commentId)
                 .orElseThrow(() -> new IllegalArgumentException("Comment not found with id: " + commentId));
@@ -77,13 +64,6 @@ public class CommentService {
     }
 
     private CommentDTO convertToDTO(Comment comment) {
-        CommentDTO dto = new CommentDTO(comment.getId(), comment.getContent());
-        if (comment.getParentComment() != null) {
-            dto.setParentCommentId(comment.getParentComment().getId());
-        }
-        if (comment.getReplies() != null && !comment.getReplies().isEmpty()) {
-            dto.setReplies(comment.getReplies().stream().map(this::convertToDTO).collect(Collectors.toList()));
-        }
-        return dto;
+        return new CommentDTO(comment.getId(), comment.getContent());
     }
 }

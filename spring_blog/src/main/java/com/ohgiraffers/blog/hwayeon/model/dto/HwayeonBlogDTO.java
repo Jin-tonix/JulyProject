@@ -1,37 +1,24 @@
 package com.ohgiraffers.blog.hwayeon.model.dto;
 
-import java.util.Date;
+import javax.xml.crypto.Data;
 
 public class HwayeonBlogDTO {
 
-    private Integer blogNo;
     private String blogTitle;
     private String blogContent;
-    private Date createDate;
+    private Data createDate;
     private String imgUrl;
     private String category;
-    private Integer  likes;
 
     public HwayeonBlogDTO() {
     }
 
-    public HwayeonBlogDTO(Integer blogNo, String blogTitle, String blogContent, Date createDate, String imgUrl, String category, Integer likes) {
-        this.blogNo = blogNo;
+    public HwayeonBlogDTO(Integer blogNo, String blogTitle, String blogContent, Data createDate, String imgUrl, String category) {
         this.blogTitle = blogTitle;
         this.blogContent = blogContent;
         this.createDate = createDate;
         this.imgUrl = imgUrl;
         this.category = category;
-        this.likes = likes;
-    }
-
-    // Getters and setters
-    public Integer getBlogNo() {
-        return blogNo;
-    }
-
-    public void setBlogNo(Integer blogNo) {
-        this.blogNo = blogNo;
     }
 
     public String getBlogTitle() {
@@ -50,11 +37,11 @@ public class HwayeonBlogDTO {
         this.blogContent = blogContent;
     }
 
-    public Date getCreateDate() {
+    public Data getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(Data createDate) {
         this.createDate = createDate;
     }
 
@@ -74,24 +61,14 @@ public class HwayeonBlogDTO {
         this.category = category;
     }
 
-    public Integer getLikes() {
-        return likes;
-    }
-
-    public void setLikes(Integer likes) {
-        this.likes = likes;
-    }
-
     @Override
     public String toString() {
-        return "HwayeonBlogDTO{" +
-                "blogNo=" + blogNo +
+        return "hwayeonBlogDTO{" +
                 ", blogTitle='" + blogTitle + '\'' +
                 ", blogContent='" + blogContent + '\'' +
                 ", createDate=" + createDate +
                 ", imgUrl='" + imgUrl + '\'' +
                 ", category='" + category + '\'' +
-                ", likes=" + likes +
                 '}';
     }
 }

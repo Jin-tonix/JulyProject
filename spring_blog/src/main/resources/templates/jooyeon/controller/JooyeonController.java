@@ -6,7 +6,6 @@ import com.ohgiraffers.blog.jooyeon.service.JooyeonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -84,23 +83,6 @@ public class JooyeonController {
 
         return mv;
     }
-
-    @GetMapping("/edit/{id}")
-    public ModelAndView showEditForm(@PathVariable("id") Integer id) {
-        ModelAndView mv = new ModelAndView("/jooyeon/edit");
-        BlogDTO blogDTO = jooyeonService.getBlogById(id);
-        mv.addObject("blogDTO", blogDTO);
-        return mv;
-    }
-
-    @PostMapping("/edit")
-    public ModelAndView handleEditForm(BlogDTO blogDTO, ModelAndView mv) {
-        jooyeonService.updateBlog(blogDTO);
-        mv.setViewName("redirect:/jooyeon/registList");
-        return mv;
-    }
-
-
 
 
 }

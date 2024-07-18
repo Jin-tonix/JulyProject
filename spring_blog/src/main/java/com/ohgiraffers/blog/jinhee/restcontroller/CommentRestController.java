@@ -32,12 +32,6 @@ public class CommentRestController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdComment);
     }
 
-    @PostMapping("/comment/{parentId}/reply")
-    public ResponseEntity<CommentDTO> createReply(@PathVariable Long parentId, @RequestBody CommentDTO replyDTO) {
-        CommentDTO createdReply = commentService.createReply(parentId, replyDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdReply);
-    }
-
     @PutMapping("/comment/{commentId}")
     public ResponseEntity<CommentDTO> updateComment(@PathVariable Long commentId, @RequestBody CommentDTO commentDTO) {
         CommentDTO updatedComment = commentService.updateComment(commentId, commentDTO);

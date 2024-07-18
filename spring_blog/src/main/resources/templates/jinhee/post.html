@@ -21,7 +21,7 @@
                 <label for="blogContent" class="form-label">블로그 내용 : </label>
                 <textarea class="form-content" id="blogContent" name="blogContent"></textarea>
                 <div id="fileInputs">
-                    <input type="file" name="files" multiple> <!-- 변경된 부분 -->
+                    <input type="file" name="file" multiple>
                     <button type="button" onclick="addFileInput()" class="btn btn-secondary mt-2">파일 추가</button>
                 </div>
             </div>
@@ -58,7 +58,7 @@
         var fileInputs = document.getElementById('fileInputs');
         var input = document.createElement('input');
         input.type = 'file';
-        input.name = 'files'; // 변경된 부분
+        input.name = 'file';
         input.multiple = true;
         fileInputs.appendChild(input);
     }
@@ -81,3 +81,4 @@
 
 </body>
 </html>
+

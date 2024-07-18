@@ -9,14 +9,14 @@ import java.util.Date;
 public class HwayeonBlog {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "blog_no")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer blogNo;
 
     @Column(name = "blog_title", unique = true, nullable = false)
     private String blogTitle;
 
-    @Column(name = "blog_content",nullable = false, length = 5000)
+    @Column(name = "blog_content", nullable = false, length = 3000)
     private String blogContent;
 
     @Column(name = "creation_date")
@@ -29,20 +29,16 @@ public class HwayeonBlog {
     @Column(name = "category")
     private String category;
 
-    @Column(name = "likes")
-    private Integer likes;
-
     public HwayeonBlog() {
     }
 
-    public HwayeonBlog(Integer blogNo, String blogTitle, String blogContent, Date createDate, String imgUrl, String category, Integer likes) {
+    public HwayeonBlog(Integer blogNo, String blogTitle, String blogContent, Date createDate, String imgUrl, String category) {
         this.blogNo = blogNo;
         this.blogTitle = blogTitle;
         this.blogContent = blogContent;
         this.createDate = createDate;
         this.imgUrl = imgUrl;
         this.category = category;
-        this.likes = likes;
     }
 
     public Integer getBlogNo() {
@@ -93,14 +89,6 @@ public class HwayeonBlog {
         this.category = category;
     }
 
-    public Integer getLikes() {
-        return likes;
-    }
-
-    public void setLikes(Integer likes) {
-        this.likes = likes;
-    }
-
     @Override
     public String toString() {
         return "HwayeonBlog{" +
@@ -110,7 +98,6 @@ public class HwayeonBlog {
                 ", createDate=" + createDate +
                 ", imgUrl='" + imgUrl + '\'' +
                 ", category='" + category + '\'' +
-                ", likes=" + likes +
                 '}';
     }
 }

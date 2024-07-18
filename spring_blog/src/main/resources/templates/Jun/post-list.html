@@ -28,9 +28,6 @@
             <td>
                 <a th:href="@{'/jun/post-detail/' + ${blog.id}}" class="btn btn-info">상세조회</a>
                 <a th:href="@{'/jun/post-edit?id=' + ${blog.id}}" class="btn btn-warning">수정</a>
-                <form th:action="@{'/jun/delete/' + ${blog.id}}" method="post" style="display:inline;">
-                    <button type="submit" class="btn btn-danger">삭제</button>
-                </form>
 
             </td>
 

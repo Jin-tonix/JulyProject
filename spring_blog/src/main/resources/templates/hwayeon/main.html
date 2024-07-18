@@ -1,48 +1,121 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>화연 블로그</title>
-    <link rel="stylesheet" th:href="@{/css/khymain.css}" />
+    <title>Hwayeon blog</title>
 </head>
 <body>
-<!--헤더 영역-->
-<div th:insert="khyfragments/header :: headerFragment"></div>
-<!--헤더 영역-->
-
-<!--메인 영역-->
-<main>
-    <div class="mainImg">
-        <img src="https://media.istockphoto.com/id/1526986072/ko/%EC%82%AC%EC%A7%84/%ED%95%B4%EC%A7%88%EB%85%98-%EC%97%B4%EB%8C%80-%EB%B0%94%EB%8B%A4-%EC%9C%84%EB%A5%BC-%EB%82%A0%EC%95%84%EB%8B%A4%EB%8B%88%EB%8A%94-%EB%B9%84%ED%96%89%EA%B8%B0.jpg?s=612x612&w=0&k=20&c=XDHnz3hezL-twLjxESaJFC3iI97lUdGAq4XgscVBHa0=">
+<header>
+    <div class="headerlogo">
+        <a th:href="@{/}">
+            <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjEyMTVfMjc3%2FMDAxNjcxMDkwNjU3NjAx.uy05CjAv_4VymZIj8qCXAei3LEHvgFy_llwv_uB5ubgg.4DUvwuY6JLlmv5BUTBIAKvRz-T2vXJCO17EQPPJ-_-sg.PNG.y2kwooga%2F%25B3%25D7%25C0%25CC%25B9%25F6_AI-05.png&type=sc960_832"
+                 alt="로고 이미지">
+        </a>
     </div>
-    <section class="hero">
-        <div class="hero-content">
-            <button type="button" class="btn btn-primary" onclick="location.href='/hwayeon/newpost'">게시글 등록
-            </button>
+    <div class="subject">
+        hwayeon blog
+    </div>
+    <div class="serch">
+        <div class="home">
+            <button type="button" class="btn btn-primary" onclick="location.href='/hwayeon/main'"> 홈 </button>
         </div>
-    </section>
+        <div class="writebutton">
+            <button type="button" class="btn btn-primary" onclick="location.href='/hwayeon/editpage'">게시글 등록</button>
+        </div>
+        <img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fe7.pngegg.com%2Fpngimages%2F381%2F351%2Fpng-clipart-computer-icons-google-search-icon-design-magnifying-glass-cartoon-logo-android.png&type=sc960_832"
+             alt="검색 아이콘">
+    </div>
+</header>
 
-    <section class="services">
-        <div class="container my-5">
-            <div th:if="${#lists.isEmpty(allPosts)}">
-                <p>아직 등록된 내용이 없습니다.</p>
+<section>
+    <div class="container" th:each="allPosts : ${posts}">
+        <div class="thumbnail">
+            썸네일
+        </div>
+        <div class="Summary">
+            <div class="blogtitle">
+                <h3>제목: <span th:text="${allPosts.blogTitle}">블로그 제목</span></h3>
             </div>
-            <div th:unless="${#lists.isEmpty(allPosts)}">
-                <ul>
-                    <li th:each="post : ${allPosts}">
-                        <h2 th:text="${post.blogTitle}"></h2>
-                        <p th:text="${post.blogContent}"></p>
-<!--                        <small th:text="${#dates.format(post.createDate, 'yyyy-MM-dd HH:mm')}"></small>-->
-                    </li>
-                </ul>
+            <div class="blogcontents">
+                <p>내용: <span th:text="${allPosts.blogContent}">블로그 내용</span></p>
             </div>
         </div>
-    </section>
-</main>
+    </div>
+</section>
 
-<!--풋터영역-->
-<div th:insert="khyfragments/footer :: footerFragment"></div>
+<style>
+    body {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto auto auto;
+        gap: 20px;
+    }
 
+    header {
+        grid-column: 1 / 4;
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        padding: 20px 0;
+        display: flex;
+        justify-content: space-between;
+        border: 1px solid black;
+    }
+
+    .headerlogo a img {
+        height: 30px;
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        margin: 0px 5px;
+    }
+
+    .serch {
+        display: flex;
+    }
+
+    .serch img {
+        height: 30px;
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        margin: 0px 5px;
+    }
+
+    section {
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: auto auto;
+        gap: 20px;
+        width: 100%;
+        height: 100%;
+        border: 1px solid black;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: auto auto;
+        gap: 20px;
+    }
+
+    .thumbnail {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+        text-align: center;
+        background-color: #f2f2f2;
+        padding: 20px 0;
+    }
+
+    .Summary {
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+    }
+
+    .writebutton {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+        text-align: right;
+    }
+</style>
 </body>
 </html>

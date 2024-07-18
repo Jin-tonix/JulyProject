@@ -1,7 +1,6 @@
 package com.ohgiraffers.blog.jinhee.model.dto;
 
 import java.util.Date;
-import java.util.List;
 
 public class BlogDTO {
     private Long id;
@@ -9,19 +8,6 @@ public class BlogDTO {
     private String blogContent;
     private Date createDate;
     private int likes;
-    private List<FileDTO> imageFiles;
-
-    public BlogDTO() {
-    }
-
-    public BlogDTO(Long id, String blogTitle, String blogContent, Date createDate, int likes, List<FileDTO> imageFiles) {
-        this.id = id;
-        this.blogTitle = blogTitle;
-        this.blogContent = blogContent;
-        this.createDate = createDate;
-        this.likes = likes;
-        this.imageFiles = imageFiles;
-    }
 
     // Getters and setters
     public Long getId() {
@@ -62,25 +48,5 @@ public class BlogDTO {
 
     public void setLikes(int likes) {
         this.likes = likes;
-    }
-
-    public List<FileDTO> getImageFiles() {
-        return imageFiles;
-    }
-
-    public void setImageFiles(List<FileDTO> imageFiles) {
-        this.imageFiles = imageFiles;
-    }
-
-    @Override
-    public String toString() {
-        return "BlogDTO{" +
-                "id=" + id +
-                ", blogTitle='" + blogTitle + '\'' +
-                ", blogContent='" + blogContent + '\'' +
-                ", createDate=" + createDate +
-                ", likes=" + likes +
-                ", imageFiles=" + imageFiles +
-                '}';
     }
 }
