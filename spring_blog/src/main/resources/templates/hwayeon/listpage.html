@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>조회 페이지</title>
+    <link rel="stylesheet" th:href="@{/css/khymain.css}" />
+</head>
+<body>
+<!--헤더 영역-->
+<div th:insert="khyfragments/header :: headerFragment"></div>
+<!--헤더 영역-->
+
+<!--메인 영역-->
+<main>
+    <section class="hero">
+        <div class="hero-content">
+            <button type="button" class="btn btn-primary" onclick="location.href='/hwayeon/newpost'">게시글 등록
+            </button>
+        </div>
+        <form class="search-form" th:action="@{/hwayeon/listpage}" method="get">
+            <input type="text" name="keyword" placeholder="블로그 글 조회">
+            <button type="submit" class="btn btn-secondary">조회</button>
+        </form>
+    </section>
+
+    <section class="services">
+        <!-- 게시글 리스트 시작 -->
+        <div class="service-item">
+            <!--  조회 내용 출력부분  -->
+            <div class="container" th:each="latestPost : ${latestPosts}">
+                <h3>
+                    <a th:href="@{'/hwayeon/detailpage/' + ${latestPost.blogNo}}"> <!-- 상세 페이지 링크 -->
+                        <span th:text="${latestPost.blogTitle}">블로그 제목</span>
+                    </a>
+                </h3>
+<!--                                <p>내용: <span th:text="${latestPost.blogContent}">블로그 내용</span></p>-->
+
+
+                <!-- 좋아요 버튼 -->
+
+<!--                <button type="button" class="btn btn-success like-button" data-blogno="${latestPost.blogNo}">-->
+<!--                    좋아요-->
+<!--                </button>-->
+<!--                <span class="like-count">💙 : <span th:text="${latestPost.likeCount}">0</span></span>-->
+
+                <!-- 삭제 버튼 -->
+                <form th:action="@{'/hwayeon/delete/' + ${latestPost.blogNo}}" method="post">
+                    <input type="hidden" name="_method" value="delete" />
+                    <button type="submit" class="btn btn-danger">삭제</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!--풋터영역-->
+<div th:insert="khyfragments/footer :: footerFragment"></div>
+<!--풋터영역-->
+
+<!-- 좋아요버튼 JavaScript 코드 -->
+
+<!--<script>-->
+<!--    // 문서가 완전히 로드되면 실행-->
+<!--    $(document).ready(function() {-->
+<!--        // 모든 '.like-button' 클래스 요소에 클릭 이벤트 핸들러를 추가-->
+<!--        $('.like-button').click(function() {-->
+<!--            // 클릭된 버튼의 'data-blogno' 속성에서 블로그 번호를 가져옴-->
+<!--            var blogNo = $(this).data('blogno');-->
+<!--            // 블로그 번호를 포함한 URL 생성-->
+<!--            var url = '/hwayeon/listpage/like/' + blogNo;-->
+
+<!--            // Ajax 요청 시작-->
+<!--            $.ajax({-->
+<!--                type: 'POST', // HTTP 메소드 설정 (POST 요청)-->
+<!--                url: url, // 요청을 보낼 URL 설정-->
+<!--                success: function(response) { // 요청이 성공하면 호출되는 콜백 함수-->
+<!--                    // 성공적으로 좋아요가 증가되면 좋아요 수를 업데이트-->
+<!--                    var likeCountElement = $('[data-blogno="' + blogNo + '"]').siblings('.like-count').find('span');-->
+<!--                    // 현재 좋아요 수를 숫자로 변환하여 가져옴-->
+<!--                    var currentCount = parseInt(likeCountElement.text());-->
+<!--                    // 좋아요 수를 1 증가시켜 업데이트-->
+<!--                    likeCountElement.text(currentCount + 1);-->
+<!--                },-->
+<!--                error: function() { // 요청이 실패하면 호출되는 콜백 함수-->
+<!--                    // 에러 메시지를 알림 창으로 표시-->
+<!--                    alert('좋아요 처리 중 오류가 발생했습니다.');-->
+<!--                }-->
+<!--            });-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
+
+</body>
+</html>

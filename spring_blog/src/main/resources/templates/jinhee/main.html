@@ -1,0 +1,23 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>"Jin's Journey"</title>
+    <link rel="stylesheet" th:href="@{/jincss/main.css}">
+    <!-- 부트 스트랩 css를 링크 방식으로 임포트함 -->
+</head>
+<body>
+<header>
+    <div th:insert="~{Jinfragments/header :: headerFragment}"></div>
+</header>
+
+<div class="main-img">
+    <div class="img-container">
+        <img th:src="@{/img/main.jpg}" alt="여행 이미지">
+        <div class="centered-text"> Jin's Journey </div>
+    </div>
+</div>
+
+</body>
+</html>

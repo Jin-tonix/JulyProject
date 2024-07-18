@@ -1,0 +1,121 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>여름 달력 & 게시판</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/kimjaesuk.css}">
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+        <a class="navbar-brand" href="#">Happy Quokka blog</a>
+    </nav>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="calendar" id="calendar"></div>
+        </div>
+        <div class="col-md-6 d-flex justify-content-center align-items-center">
+            <img src="https://i.pinimg.com/736x/98/83/9b/98839b7732cb73afd4065220239967eb.jpg" alt="Summer Image"
+                 class="summer-image">
+        </div>
+    </div>
+
+    <div id="mainView">
+        <div th:if="${message}" class="alert alert-success alert-dismissible fade show" role="alert">
+            <span th:text="${message}"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+            <span th:text="${error}"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="mb-3 d-flex justify-content-between">
+            <a th:href="@{/jaesuk/post}" class="btn btn-primary">새 글 작성</a>
+            <div class="form-inline">
+                <input type="text" id="searchInput" class="form-control mr-2" placeholder="검색어 입력">
+                <button type="button" id="searchBtn" class="btn btn-outline-secondary">검색</button>
+            </div>
+        </div>
+
+        <table class="table table-striped" th:if="${posts != null and not #lists.isEmpty(posts)}">
+            <thead>
+            <tr>
+                <th>No</th>
+                <th>제목</th>
+                <th>작성시간</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="post, iterStat : ${posts}">
+                <td th:text="${posts.size() - iterStat.index}"></td>
+                <td>
+                    <a th:href="@{/jaesuk/post/{id}(id=${post.id})}" th:text="${post.title}"></a>
+                </td>
+                <td th:text="${post.formattedDate ?: '날짜 없음'}"></td>
+                <td>
+                    <a th:href="@{/jaesuk/edit/{id}(id=${post.id})}" class="btn btn-sm btn-info">수정</a>
+                    <a th:href="@{/jaesuk/delete/{id}(id=${post.id})}" class="btn btn-sm btn-danger">삭제</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div th:if="${posts == null or #lists.isEmpty(posts)}" class="alert alert-info">
+            게시글이 없습니다.
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script th:inline="javascript">
+    let currentYear, currentMonth;
+    let posts = /*[[${posts}]]*/ [];
+
+    function createCalendar(year, month) {
+        // 기존의 createCalendar 함수 내용
+    }
+
+    function changeMonth(delta) {
+        // 기존의 changeMonth 함수 내용
+    }
+
+    function showPostsOnDate(date) {
+        // 기존의 showPostsOnDate 함수 내용
+    }
+
+    function searchPosts() {
+        const searchTerm = $('#searchInput').val().toLowerCase();
+        const filteredPosts = posts.filter(post =>
+            post.title.toLowerCase().includes(searchTerm) ||
+            post.content.toLowerCase().includes(searchTerm)
+        );
+        displayPosts(filteredPosts);
+    }
+
+    function displayPosts(postsToDisplay = posts) {
+        // 여기서는 Thymeleaf가 서버 측에서 렌더링하므로 클라이언트 측 렌더링 로직은 제거
+    }
+
+    $('#searchBtn').click(searchPosts);
+
+    $('#searchInput').on('keyup', function (e) {
+        if (e.key === 'Enter') {
+            searchPosts();
+        }
+    });
+
+    // 초기화
+    const today = new Date();
+    createCalendar(today.getFullYear(), today.getMonth() + 1);
+</script>
+</body>
+</html>

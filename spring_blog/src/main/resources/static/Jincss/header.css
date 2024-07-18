@@ -1,0 +1,42 @@
+/* 헤더 스타일 */
+header {
+    background-color: white;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+header .top {
+    display: flex;
+    justify-content: space-between; /* 좌우 분산 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    height: 8vh;
+    margin-left: 20px;
+    margin-right: 30px;
+}
+
+header .top > div {
+    display: flex;
+    align-items: center; /* 각 박스의 내용을 세로 중앙 정렬 */
+    text-decoration: none;
+    font-size: 20px; /* 원하는 크기로 조정하세요 */
+}
+
+header .top .top-nav {
+    display: flex;
+    gap: 20px;
+    text-decoration: none;
+}
+
+.top-nav {
+    text-decoration: none;
+}
+
+header .top-nav div, header .top-nav button {
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: background-color 0.3s;
+}
+
+header .top-nav div:hover, header .top-nav button:hover {
+    background-color: #e0e0e0;
+}

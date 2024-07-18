@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+    <link rel="stylesheet" th:href="@{/Jincss/signup.css}">
+</head>
+<body>
+
+<!-- 헤더를 fragments/header.html에서 가져오기 -->
+<div th:replace="Jinfragments/header :: headerFragment"></div>
+
+<main>
+    <div class="signup-container">
+        <h2>회원가입</h2>
+        <!-- 회원가입 폼 -->
+        <form action="#" th:action="@{/signup}" method="post" class="signup-form">
+            <div class="form-group">
+                <label for="username">사용자명:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">비밀번호:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">가입하기</button>
+        </form>
+        <!-- 로그인 링크 -->
+        <div class="login-link">
+            이미 계정이 있으신가요? <a th:href="@{/menu-login}">로그인</a>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

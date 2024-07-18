@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>화연 블로그</title>
+    <link rel="stylesheet" th:href="@{/css/khymain.css}" />
+</head>
+<body>
+<!--헤더 영역-->
+<div th:insert="khyfragments/header :: headerFragment"></div>
+<!--헤더 영역-->
+
+<!--메인 영역-->
+<main>
+    <div class="mainImg">
+        <img src="https://media.istockphoto.com/id/1526986072/ko/%EC%82%AC%EC%A7%84/%ED%95%B4%EC%A7%88%EB%85%98-%EC%97%B4%EB%8C%80-%EB%B0%94%EB%8B%A4-%EC%9C%84%EB%A5%BC-%EB%82%A0%EC%95%84%EB%8B%A4%EB%8B%88%EB%8A%94-%EB%B9%84%ED%96%89%EA%B8%B0.jpg?s=612x612&w=0&k=20&c=XDHnz3hezL-twLjxESaJFC3iI97lUdGAq4XgscVBHa0=">
+    </div>
+    <section class="hero">
+        <div class="hero-content">
+            <button type="button" class="btn btn-primary" onclick="location.href='/hwayeon/newpost'">게시글 등록
+            </button>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="container my-5">
+            <div th:if="${#lists.isEmpty(allPosts)}">
+                <p>아직 등록된 내용이 없습니다.</p>
+            </div>
+            <div th:unless="${#lists.isEmpty(allPosts)}">
+                <ul>
+                    <li th:each="post : ${allPosts}">
+                        <h2 th:text="${post.blogTitle}"></h2>
+                        <p th:text="${post.blogContent}"></p>
+<!--                        <small th:text="${#dates.format(post.createDate, 'yyyy-MM-dd HH:mm')}"></small>-->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!--풋터영역-->
+<div th:insert="khyfragments/footer :: footerFragment"></div>
+
+</body>
+</html>

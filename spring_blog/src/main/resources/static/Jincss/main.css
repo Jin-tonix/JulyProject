@@ -1,0 +1,62 @@
+/* 기본 스타일 초기화 */
+body, h1, h2, h3, p, div, header, section {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 전체 레이아웃 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* 메인 이미지 스타일 */
+.main-img {
+    text-align: center; /* 텍스트를 가운데 정렬합니다. */
+    margin: 20px 0; /* 위아래 여백을 20px, 좌우 여백을 0으로 설정합니다. */
+    width: 100%; /* 가로 너비를 부모 요소의 98%로 설정합니다. */
+    height: 100%; /* 세로 높이를 부모 요소의 100%로 설정합니다. */
+    display: block; /* 요소를 블록 레벨로 설정합니다. */
+    margin-left: auto; /* 왼쪽 여백을 자동으로 설정하여 가운데 정렬을 합니다. */
+    margin-right: auto; /* 오른쪽 여백을 자동으로 설정하여 가운데 정렬을 합니다. */
+}
+
+.img-container {
+    position: relative;
+}
+
+.img-container img {
+    width: 95%;
+    height: 75vh;
+}
+
+.centered-text {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* 중앙 정렬 */
+    font-size: 80px; /* 원하는 폰트 크기 설정 */
+    color: white; /* 텍스트 색상 설정 */
+    background-color: rgba(0, 0, 0, 0.3); /* 텍스트 배경색 설정 */
+    padding: 10px; /* 텍스트 주위의 여백 설정 */
+    border-radius: 8px; /* 모서리 둥글게 설정 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+/* 섹션 스타일 */
+section {
+    padding: 20px;
+    background-color: white;
+    margin: 20px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.inner h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+}
+
+
+

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="headerFragment">
+<head>
+    <title>Title</title>
+<!--    <link rel="stylesheet" th:href="@{/css/reset.css}">-->
+    <link rel="stylesheet" th:href="@{/Jincss/header.css}">
+</head>
+<body>
+
+<!-- 헤더 시작 -->
+<header>
+    <div class="top">
+        <div> 여행 블로그 </div>
+        <div class="top-nav">
+            <div><a th:href="@{/}">Home</a></div>
+            <div><a th:href="@{/jinhee/main}">Main</a></div>
+            <div><a th:href="@{/jinhee/journey}">Journey</a></div>
+            <div><a th:href="@{/jinhee/post}">Post</a></div>
+            <div><a th:href="@{/menu-login}"><button class="btn btn-primary">로그인</button></a></div>
+        </div>
+    </div>
+</header>
+<!-- 헤더 종료 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YYYYYY" crossorigin="anonymous"></script>
+</body>
+</html>

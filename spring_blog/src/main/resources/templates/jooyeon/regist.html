@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글</title>
+    <link rel="stylesheet" th:href="@{/css/regist.css}">
+</head>
+<body>
+
+<div class="header-container">
+    <div class="logo">
+        <a href="#">JooYeon's Blog</a>
+
+    </div>
+
+
+    <div class="search-bar">
+        <input type="text" placeholder="Search...">
+        <button type="submit">
+            <i class="fa fa-search"></i>
+        </button>
+    </div>
+    <div class="user-actions">
+        <a href="#" class="login">Login</a>
+    </div>
+</div>
+
+<!--<nav>-->
+<!--    <ul>-->
+<!--        <li><a href="#">Get Your Beauty</a></li>-->
+<!--        <li><a href="#">Skin Makeup</a></li>-->
+<!--        <li><a href="#">Lip Makeup</a></li>-->
+<!--        <li><a href="#">Perfume</a></li>-->
+<!--    </ul>-->
+<!--</nav>-->
+
+<div class="sidebar">
+
+</div>
+
+<div class="main-content">
+    <div class="post-container">
+        <h2>게시글 등록</h2>
+        <form th:action="@{/jooyeon/registList}" method="post" th:object="${blogDTO}">
+            <label for="title">제목:</label>
+            <input type="text" id="title" name="blogTitle" required>
+            <label for="content">내용:</label>
+            <textarea id="content" name="blogContent" rows="5" required></textarea>
+            <button type="submit" class="post-button">게시글 등록</button>
+
+            <hr class="my-4">
+
+            <a th:href="@{/jooyeon/registList}" class="btn btn-secondary btn-lg">목록으로 돌아가기</a>
+        </form>
+
+
+    </div>
+</div>
+</body>
+</html>

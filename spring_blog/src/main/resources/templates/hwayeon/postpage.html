@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>화연 블로그</title>
+    <link rel="stylesheet" th:href="@{/css/khymain.css}" />
+</head>
+<body>
+<!--헤더 영역-->
+<div th:insert="khyfragments/header :: headerFragment"></div>
+<!--헤더 영역-->
+
+<!-- 메인 영역 -->
+<main>
+    <section class="services">
+        <!-- 게시글 리스트 시작 -->
+        <div class="container">
+
+            <p>Blog No: <span th:text="${blogNo}"></span></p>
+            <div class="blogtitle">
+                <p><span th:text="${blogTitle}">블로그 제목</span></p>
+<!--                <p><span th:text="${createDate}">작성시간</span></p>-->
+            </div>
+            <div class="blogcontents">
+                <p><span th:text="${blogContent}">블로그 내용</span></p>
+                <h1 th:text="${ message }"></h1>
+                <div th:if="${img != null}">
+                    <img th:src="${img}" width="300" height="300"/>
+                </div>
+
+                <div th:else>
+                    <div th:each="img : ${imgs}">
+                        <img th:src="${img}" width="300" height="300"/>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- 수정 폼 -->
+            <form th:action="@{/hwayeon/modifypage}" method="get">
+                <input type="hidden" th:value="${blogNo}" name="blogNo"/>
+
+            <form id="modifyForm" th:action="@{/hwayeon/modifypage}" method="get">
+                <input type="hidden" th:value="${blog.blogNo}" name="blogNo"/>
+                <div class="modifybutton">
+                    <button type="submit">수정</button>
+                </div>
+            </form>
+
+
+<!--            <form th:action="@{/hwayeon/modifypage}" method="get">-->
+<!--                <input type="hidden" th:value="${blogNo}" name="blogNo"/>-->
+<!--                <div class="modifybutton">-->
+<!--                    <button type="submit">수정</button>-->
+<!--                </div>-->
+<!--            </form>-->
+        </div>
+    </section>
+</main>
+
+<!--풋터영역-->
+<div th:insert="khyfragments/footer :: footerFragment"></div>
+
+
+<!--  수정 버튼용 자바스크립트  -->
+<script type="text/javascript">
+    function modifyPost() {
+        var blogNo = document.getElementById("blogNo").value;
+        console.log("BlogNo from JavaScript: " + blogNo);  // 디버깅을 위한 로그 추가
+        if (blogNo) {
+            window.location.href = "/hwayeon/modifypage?blogNo=" + blogNo;
+        } else {
+            alert("Invalid blog number");
+        }
+    }
+</script>
+  
+</body>
+</html>

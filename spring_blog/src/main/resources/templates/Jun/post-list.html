@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog List</title>
+    <link th:href="@{/css/polist.css}" rel="stylesheet" />
+
+
+</head>
+<body>
+<div class="container my-5">
+    <h1 class="text-center mb-4">Blog List</h1>
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <!--<th>Content</th>-->
+            <th>Created Date</th>
+            <th>OPTION</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="blog : ${blogList}">
+            <td th:text="${blog.blogTitle}"></td>
+            <!--   <td th:text="${blog.blogContent}"></td> -->
+            <td th:text="${#dates.format(blog.createDate, 'yyyy-MM-dd')}"></td>
+
+            <td>
+                <a th:href="@{'/jun/post-detail/' + ${blog.id}}" class="btn btn-info">상세조회</a>
+                <a th:href="@{'/jun/post-edit?id=' + ${blog.id}}" class="btn btn-warning">수정</a>
+                <form th:action="@{'/jun/delete/' + ${blog.id}}" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-danger">삭제</button>
+                </form>
+
+            </td>
+
+
+
+        </tr>
+        </tbody>
+    </table>
+    <button type="button" class="btn btn-primary" onclick="location.href='/jun/main'">홈</button>
+</div>
+
+</body>
+</html>

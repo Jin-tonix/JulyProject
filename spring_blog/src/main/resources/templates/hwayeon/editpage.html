@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>화연 블로그</title>
+    <link rel="stylesheet" th:href="@{/css/khymain.css}" />
+</head>
+<body>
+<!--헤더 영역-->
+<div th:insert="khyfragments/header :: headerFragment"></div>
+<!--헤더 영역-->
+
+<!--메인 영역-->
+<main>
+    <section class="services">
+        <div class="container my-5">
+            <!-- 블로그 수정 폼 -->
+            <form th:action="@{/hwayeon/update}" method="post" th:if="${blog.blogNo != null}">
+                <input type="hidden" th:value="${blog.blogNo}" name="blogNo"/>
+                <div class="mb-3">
+                    <label for="editBlogTitle" class="form-label">제목 :</label>
+                    <input type="text" class="form-control" id="editBlogTitle" name="blogTitle"
+                           th:value="${blog.blogTitle}" placeholder="제목을 입력하세요">
+                </div>
+                <div class="mb-3">
+                    <label for="editBlogContent" class="form-label">내용 :</label>
+                    <textarea class="form-control" id="editBlogContent" name="blogContent" rows="5"
+                              th:text="${blog.blogContent}" placeholder="내용을 입력하세요"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">블로그 수정</button>
+            </form>
+
+            <!-- 블로그 등록 폼 -->
+            <form th:action="@{/hwayeon/postpage}" method="post" th:unless="${blog.blogNo != null}">
+                <div class="mb-3">
+                    <input type="hidden" class="form-control" id="newBlogNo" name="blogNo">
+                    <!--<input type="hidden" class="form-control" id="newCreateDate" name="createDate">-->
+                </div>
+                <div class="mb-3">
+                    <label for="newBlogTitle" class="form-label">제목 :</label>
+                    <input type="text" class="form-control" id="newBlogTitle" name="blogTitle"
+                           placeholder="제목을 입력하세요">
+                </div>
+                <div class="mb-3">
+                    <label for="newBlogContent" class="form-label">내용 :</label>
+                    <textarea class="form-control" id="newBlogContent" name="blogContent" rows="5"
+                              placeholder="내용을 입력하세요"></textarea>
+                </div>
+
+                <form action="multi-file" method="post" encType="multipart/form-data">
+                    파일 : <input type="file" name="multipartFiles" multiple><br>
+                    파일 설명 : <input type="text" name="multiFileDescription"><br>
+<!--                    <input type="submit">-->
+                </form>
+
+                <button type="submit" class="btn btn-primary">블로그 등록</button>
+            </form>
+            <!-- 등록 성공 메시지 -->
+            <div th:if="${confirm}" class="container">
+                <p>등록되었습니다.</p>
+                <a th:href="@{/hwayeon/PostPage}" class="btn btn-primary">확인</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!--풋터영역-->
+<div th:insert="khyfragments/footer :: footerFragment"></div>
+</body>
+</html>

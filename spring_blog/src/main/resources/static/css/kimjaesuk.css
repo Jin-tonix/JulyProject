@@ -1,0 +1,95 @@
+@font-face {
+    font-family: 'MangoDdobak-B';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-3@1.1/MangoDdobak-B.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* 전체 문서에 폰트 적용 */
+html, body {
+    font-family: 'MangoDdobak-B', sans-serif;
+}
+
+/* 모든 제목 요소에 폰트 적용 */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'MangoDdobak-B', sans-serif;
+}
+
+/* 특정 클래스에 폰트 적용 (예: 타이틀) */
+.title, .page-title {
+    font-family: 'MangoDdobak-B', sans-serif;
+}
+
+body {
+    background-color: #FFF9E5;
+    padding-top: 20px;
+}
+
+.container {
+    max-width: 1000px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.calendar {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.calendar table {
+    width: 100%;
+}
+
+.calendar th, .calendar td {
+    text-align: center;
+    padding: 10px;
+}
+
+.calendar .header {
+    background-color: #FFD700;
+    color: white;
+    font-size: 24px;
+}
+
+.calendar .nav-month {
+    cursor: pointer;
+    user-select: none;
+}
+
+.summer-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.comment {
+    background-color: #F0F8FF;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: #FFD700 !important;
+}
+#likeButton {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#likeButton svg {
+    fill: #ccc; /* 초기 색상 */
+    transition: fill 0.3s ease;
+}
+
+#likeButton.liked svg {
+    fill: #ff0000; /* 좋아요 눌렀을 때 색상 */
+}

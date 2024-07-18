@@ -1,0 +1,227 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e1d6ef;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header Styles */
+.header-container {
+    background-color: #cbb3e8;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    max-width: 150px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input[type="text"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.search-bar button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+}
+
+.user-actions a {
+    text-decoration: none;
+    color: #333;
+    margin-left: 10px;
+}
+.logo a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    margin-right: 5px;
+}
+
+.search-bar button {
+    background-color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+}
+
+.user-actions .login {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.post-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.post-container h2 {
+    margin-top: 0;
+}
+
+.post-container form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.post-container form label {
+    margin-bottom: 5px;
+}
+
+.post-container form input,
+.post-container form textarea {
+    padding: 5px 10px;
+    border: 1px solid #d3beed;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+
+.post-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.post-list .post-item {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.post-list .post-item h3 {
+    margin-top: 0;
+}
+
+.post-list .post-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.post-list .post-actions a {
+    color: #333;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.post-list .post-actions a.edit-button {
+    color: #007bff;
+}
+
+.post-list .post-actions a.delete-button {
+    color: #dc3545;
+}
+
+/* 헤더 스타일 */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+/* 메인 컨텐츠 스타일 */
+main {
+    padding: 20px;
+}
+
+/* 섹션 스타일 */
+section {
+    margin-bottom: 40px;
+}
+
+/* 섹션 제목 스타일 */
+section h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* 섹션 내용 스타일 */
+section p {
+    line-height: 1.5;
+}
+
+/* 푸터 스타일 */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+
