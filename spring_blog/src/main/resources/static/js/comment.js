@@ -21,10 +21,13 @@ function fetchComments() {
         .catch(error => console.error('댓글 불러오기 오류:', error));
 }
 
-function submitComment() {
+function submitComment(parentCommentId = null) {
     const blogId = getBlogIdFromPage();
     const commentText = document.getElementById('commentText').value;
-    const commentDTO = { content: commentText };
+    const commentDTO = {
+        content: commentText,
+        parentCommentId: parentCommentId // 부모 댓글 ID 추가
+    };
 
     fetch(`/jinhee/postpage/${blogId}/comment`, {
         method: 'POST',
@@ -98,6 +101,25 @@ function displayComment(comment) {
     deleteButton.textContent = '삭제';
     deleteButton.onclick = () => deleteComment(comment.id);
     commentElement.appendChild(deleteButton);
+
+    // 대댓글 입력 폼과 버튼 생성
+    const replyForm = document.createElement('form');
+    replyForm.classList.add('reply-form');
+    const replyInput = document.createElement('input');
+    replyInput.type = 'text';
+    replyInput.placeholder = '대댓글을 입력하세요...';
+    const replyButton = document.createElement('button');
+    replyButton.type = 'submit';
+    replyButton.textContent = '답글 달기';
+
+    replyForm.onsubmit = (event) => {
+        event.preventDefault();
+        submitComment(comment.id); // 부모 댓글의 ID를 넘겨 대댓글로 등록
+    };
+
+    replyForm.appendChild(replyInput);
+    replyForm.appendChild(replyButton);
+    commentElement.appendChild(replyForm);
 
     // 댓글 요소를 댓글 목록에 추가
     commentsList.appendChild(commentElement);
